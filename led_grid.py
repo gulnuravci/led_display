@@ -143,17 +143,31 @@ def generate_color_lists():
     for color, grid_set in color_lists.items():
         color_name = color_names.get(color, "Unknown")
         sorted_numbers = sorted(grid_set)
+        sorted_numbers = [i+1 for i in sorted_numbers]
         lists_str += f"{color_name} List: {', '.join(map(str, sorted_numbers))}\n"
     return lists_str[:-1]
 
+def generate_pin_dict():
+    pin_dict = {}
+    for color, grid_set in color_lists.items():
+        color_name = color_names.get(color, "Unknown")
+        sorted_numbers = sorted(grid_set)
+        sorted_numbers = [i+1 for i in sorted_numbers]
+        pin_dict[color_name] = sorted_numbers
+    
+    return pin_dict
+    
 def display_color_lists():
     """
     Updates the text widget with the current color lists. This function is called when the
     'Generate Lists' button is pressed.
     """
     lists_str = generate_color_lists()
+    pin_dict = generate_pin_dict()
     text_output.delete("1.0", tk.END)
     text_output.insert(tk.END, lists_str)
+    text_output.insert(tk.END, "\nDictionary: ")
+    text_output.insert(tk.END, str(pin_dict))
 
 def reset_grid():
     """

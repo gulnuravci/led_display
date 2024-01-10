@@ -14,8 +14,8 @@ void setup() {
 }
 
 void loop() {
-  cube_animation();
-//  flower_animation();
+//  cube_animation();
+  flower_animation();
 }
 
 void clear_LEDs(){
